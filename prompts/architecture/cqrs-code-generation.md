@@ -39,7 +39,7 @@ For each file:
 - **Code**:
 
   {generated_code}
-
+```
 ## How to Use
 
 1. First use the "CQRS Pattern Analysis" prompt with your existing code
