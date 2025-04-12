@@ -37,10 +37,8 @@ You are an expert software engineer specializing in CQRS architecture for CRUD o
 For each file:
 - **File Name**: {file_name}
 - **Code**:
-  ```
-  {generated_code}
-  ```
 
+  {generated_code}
 
 ## How to Use
 
