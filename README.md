@@ -42,13 +42,8 @@ For more detailed information on using this library:
 
 - [Getting Started Guide](./docs/getting-started.md)
 - [Best Practices](./docs/best-practices.md)
-- [Examples](./docs/examples/)
 - [FAQ](./docs/faq.md)
 
-## Resources
-
-- [Prompt Engineering Cheatsheet](./resources/cheatsheet.md)
-- [Common Prompt Patterns](./resources/prompt-patterns.md)
 
 ## Contributing
 
