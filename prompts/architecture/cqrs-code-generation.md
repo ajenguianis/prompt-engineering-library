@@ -37,7 +37,7 @@ You are an expert software engineer specializing in CQRS architecture for CRUD o
 For each file:
 - **File Name**: {file_name}
 - **Code**:
-  ```{language}
+  ```
   {generated_code}
   ```
 
