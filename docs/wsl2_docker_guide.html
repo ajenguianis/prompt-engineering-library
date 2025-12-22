@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide d'Installation et d'Utilisation - WSL2 & Docker Engine</title>
+    <style>
+        @media print {
+            body { margin: 0; }
+            .page-break { page-break-after: always; }
+            .no-print { display: none; }
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20mm;
+            background: #f5f5f5;
+        }
+        
+        .document {
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #0066cc;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        h2 {
+            color: #0066cc;
+            margin-top: 30px;
+            border-left: 4px solid #0066cc;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            border: none;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 4px solid #0066cc;
+        }
+        
+        pre code {
+            background: none;
+            color: #f8f8f2;
+            padding: 0;
+        }
+        
+        .step {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-left: 4px solid #28a745;
+            border-radius: 3px;
+        }
+        
+        .step-number {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 3px;
+        }
+        
+        .info {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 3px;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 3px;
+        }
+        
+        ul {
+            margin-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .command-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .command-list li {
+            background: #f8f9fa;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 3px;
+            border-left: 3px solid #6c757d;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background: #0066cc;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .btn-print {
+            background: #0066cc;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        .btn-print:hover {
+            background: #0052a3;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn-print no-print" onclick="window.print()">📄 Imprimer / Exporter en PDF</button>
+    
+    <div class="document">
+        <div class="header">
+            <h1>Guide d'Installation et d'Utilisation</h1>
+            <p><strong>WSL2 & Docker Engine</strong></p>
+            <p style="font-size: 0.9em; color: #999;">Documentation Technique - Version 1.0</p>
+        </div>
+
+        <div class="info">
+            <strong>📌 À propos de ce guide :</strong> Ce document détaille la procédure complète d'installation et d'utilisation de Docker Engine sous WSL2 (Windows Subsystem for Linux 2) avec stockage sur disque D:. Il est destiné à être partagé avec l'équipe de développement.
+        </div>
+
+        <h2>📋 Table des Matières</h2>
+        <ul>
+            <li><a href="#partie1">Partie 1 : Installation</a></li>
+            <li><a href="#partie2">Partie 2 : Utilisation Quotidienne</a></li>
+            <li><a href="#commandes">Commandes Docker Utiles</a></li>
+        </ul>
+
+        <div class="page-break"></div>
+
+        <h2 id="partie1">Partie 1 : Installation</h2>
+        <p><em>Cette section documente l'installation complète pour référence future.</em></p>
+
+        <div class="step">
+            <h3><span class="step-number">1</span>Activer WSL 2 et Virtual Machine Platform</h3>
+            <p>Ouvrir PowerShell en tant qu'administrateur et exécuter les commandes suivantes :</p>
+            <pre><code>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart</code></pre>
+            <pre><code>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</code></pre>
+            <div class="warning">
+                <strong>⚠️ Important :</strong> Redémarrer l'ordinateur après ces commandes.
+            </div>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-number">2</span>Installer Ubuntu 22.04 LTS</h3>
+            <ul>
+                <li>Ouvrir le Microsoft Store</li>
+                <li>Rechercher et installer <strong>Ubuntu 22.04 LTS</strong></li>
+                <li>Lancer l'application Ubuntu</li>
+                <li>Configurer un nom d'utilisateur et un mot de passe</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-number">3</span>Configurer WSL 2 comme version par défaut</h3>
+            <p>Dans PowerShell (administrateur) :</p>
+            <pre><code>wsl --set-default-version 2</code></pre>
+            <p>Définir Ubuntu 22.04 en version 2 :</p>
+            <pre><code>wsl --set-version Ubuntu-22.04 2</code></pre>
+            <div class="info">
+                <strong>💡 Astuce :</strong> Vérifier les distributions installées avec <code>wsl -l -v</code>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-number">4</span>Installer Docker Engine dans WSL Ubuntu</h3>
+            <p>Ouvrir l'application Ubuntu et exécuter :</p>
+            <pre><code># Mettre à jour les paquets
+sudo apt update
+
+# Télécharger et exécuter le script d'installation
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+
+# Ajouter l'utilisateur au groupe docker
+sudo usermod -aG docker $USER</code></pre>
+            <div class="warning">
+                <strong>⚠️ Important :</strong> Fermer et rouvrir l'application Ubuntu après cette étape pour que les changements de groupe prennent effet.
+            </div>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-number">5</span>Installer Docker Compose</h3>
+            <p>Dans l'application Ubuntu :</p>
+            <pre><code>sudo apt install docker-compose-plugin</code></pre>
+        </div>
+
+        <div class="page-break"></div>
+
+        <div class="step">
+            <h3><span class="step-number">6</span>Configurer Docker pour utiliser le disque D:</h3>
+            <p><strong>a)</strong> Arrêter le service Docker :</p>
+            <pre><code>sudo systemctl stop docker</code></pre>
+            
+            <p><strong>b)</strong> Créer le répertoire sur le disque D: :</p>
+            <pre><code>sudo mkdir -p /mnt/d/docker-data</code></pre>
+            
+            <p><strong>c)</strong> Créer/éditer le fichier de configuration :</p>
+            <pre><code>sudo nano /etc/docker/daemon.json</code></pre>
+            
+            <p><strong>d)</strong> Ajouter le contenu suivant :</p>
+            <pre><code>{
+  "data-root": "/mnt/d/docker-data"
+}</code></pre>
+            
+            <p><strong>e)</strong> Sauvegarder et quitter (Ctrl+X, puis Y, puis Entrée)</p>
+            
+            <p><strong>f)</strong> Redémarrer Docker :</p>
+            <pre><code>sudo systemctl start docker</code></pre>
+            
+            <p><strong>g)</strong> Vérifier le statut :</p>
+            <pre><code>sudo systemctl status docker</code></pre>
+            <p>Le statut doit afficher <code>active (running)</code></p>
+            
+            <p><strong>h)</strong> Vérifier le changement de répertoire :</p>
+            <pre><code>docker info | grep "Docker Root Dir"</code></pre>
+            <p>Doit afficher : <code>/mnt/d/docker-data</code></p>
+        </div>
+
+        <div class="step">
+            <h3><span class="step-number">7</span>Vérifier l'installation</h3>
+            <p>Vérifier les versions installées :</p>
+            <pre><code>docker --version
+docker compose version</code></pre>
+            
+            <p>Lancer un conteneur de test :</p>
+            <pre><code>docker run hello-world</code></pre>
+            
+            <div class="success">
+                <strong>✅ Succès :</strong> Si vous voyez le message "Hello from Docker!", l'installation est complète et fonctionnelle !
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2 id="partie2">Partie 2 : Utilisation Quotidienne</h2>
+
+        <h3>🚀 Au démarrage de votre PC</h3>
+        <div class="step">
+            <ol>
+                <li>Ouvrir l'application <strong>Ubuntu 22.04</strong></li>
+                <li>Démarrer le service Docker (si nécessaire) :
+                    <pre><code>sudo systemctl start docker</code></pre>
+                </li>
+            </ol>
+            
+            <div class="info">
+                <strong>💡 Démarrage automatique :</strong> Pour tenter de lancer Docker automatiquement à chaque ouverture de WSL, exécuter une seule fois :
+                <pre><code>sudo systemctl enable docker</code></pre>
+                <p><em>Note : Cela ne fonctionne pas toujours de manière fiable dans WSL, il est donc prudent de démarrer manuellement si nécessaire.</em></p>
+            </div>
+        </div>
+
+        <h3>💼 Travailler sur un projet</h3>
+        <div class="step">
+            <p><strong>1. Naviguer vers votre projet :</strong></p>
+            <pre><code>cd /mnt/d/php-projects/mon-projet-php</code></pre>
+            
+            <p><strong>2. Lancer les services :</strong></p>
+            <ul class="command-list">
+                <li><strong>En arrière-plan (détaché) :</strong>
+                    <pre><code>docker compose up -d</code></pre>
+                </li>
+                <li><strong>En mode attaché (avec logs) :</strong>
+                    <pre><code>docker compose up</code></pre>
+                </li>
+            </ul>
+            
+            <p><strong>3. Arrêter les services :</strong></p>
+            <ul class="command-list">
+                <li><strong>Arrêt propre (supprime les conteneurs) :</strong>
+                    <pre><code>docker compose down</code></pre>
+                </li>
+                <li><strong>Arrêt simple (conserve les conteneurs) :</strong>
+                    <pre><code>docker compose stop</code></pre>
+                </li>
+            </ul>
+            
+            <p><strong>4. Redémarrer les services :</strong></p>
+            <pre><code>docker compose start</code></pre>
+            
+            <p><strong>5. Voir l'état des conteneurs :</strong></p>
+            <pre><code>docker compose ps</code></pre>
+            
+            <p><strong>6. Voir les logs :</strong></p>
+            <pre><code>docker compose logs -f</code></pre>
+            <p><em>Le <code>-f</code> permet de suivre les logs en temps réel</em></p>
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2 id="commandes">📚 Commandes Docker Générales Utiles</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Commande</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>docker ps</code></td>
+                    <td>Lister les conteneurs en cours d'exécution</td>
+                </tr>
+                <tr>
+                    <td><code>docker ps -a</code></td>
+                    <td>Lister tous les conteneurs (actifs et arrêtés)</td>
+                </tr>
+                <tr>
+                    <td><code>docker images</code></td>
+                    <td>Lister toutes les images Docker</td>
+                </tr>
+                <tr>
+                    <td><code>docker volume ls</code></td>
+                    <td>Lister tous les volumes Docker</td>
+                </tr>
+                <tr>
+                    <td><code>docker system df</code></td>
+                    <td>Voir l'espace disque utilisé par Docker</td>
+                </tr>
+                <tr>
+                    <td><code>docker system prune</code></td>
+                    <td>Nettoyer les ressources inutilisées</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>🔧 Accéder à un conteneur</h3>
+        <div class="step">
+            <p>Pour exécuter une commande dans un conteneur en cours d'exécution :</p>
+            <pre><code>docker exec -it &lt;nom_du_conteneur&gt; bash</code></pre>
+            
+            <p><strong>Exemple :</strong></p>
+            <pre><code>docker exec -it mon-projet-php-php-1 bash</code></pre>
+            
+            <div class="info">
+                <strong>💡 Astuce :</strong> Le nom exact du conteneur est donné par <code>docker compose ps</code> ou <code>docker ps</code>
+            </div>
+        </div>
+
+        <h3>🧹 Maintenance et Nettoyage</h3>
+        <div class="step">
+            <ul class="command-list">
+                <li><strong>Supprimer les conteneurs arrêtés :</strong>
+                    <pre><code>docker container prune</code></pre>
+                </li>
+                <li><strong>Supprimer les images non utilisées :</strong>
+                    <pre><code>docker image prune</code></pre>
+                </li>
+                <li><strong>Supprimer les volumes non utilisés :</strong>
+                    <pre><code>docker volume prune</code></pre>
+                </li>
+                <li><strong>Nettoyage complet :</strong>
+                    <pre><code>docker system prune -a --volumes</code></pre>
+                    <div class="warning">
+                        <strong>⚠️ Attention :</strong> Cette commande supprime TOUTES les ressources non utilisées, y compris les images et volumes !
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2>🆘 Dépannage</h2>
+
+        <h3>Problème : Docker ne démarre pas</h3>
+        <div class="step">
+            <p><strong>Solution 1 :</strong> Vérifier le statut du service</p>
+            <pre><code>sudo systemctl status docker</code></pre>
+            
+            <p><strong>Solution 2 :</strong> Redémarrer le service</p>
+            <pre><code>sudo systemctl restart docker</code></pre>
+            
+            <p><strong>Solution 3 :</strong> Voir les logs d'erreur</p>
+            <pre><code>sudo journalctl -u docker.service</code></pre>
+        </div>
+
+        <h3>Problème : Permission denied lors de l'utilisation de Docker</h3>
+        <div class="step">
+            <p><strong>Solution :</strong> Vérifier que l'utilisateur est dans le groupe docker</p>
+            <pre><code>groups</code></pre>
+            <p>Si "docker" n'apparaît pas, exécuter :</p>
+            <pre><code>sudo usermod -aG docker $USER</code></pre>
+            <p>Puis fermer et rouvrir le terminal Ubuntu.</p>
+        </div>
+
+        <h3>Problème : Manque d'espace disque</h3>
+        <div class="step">
+            <p><strong>Solution :</strong> Vérifier l'utilisation et nettoyer</p>
+            <pre><code>docker system df
+docker system prune -a</code></pre>
+        </div>
+
+        <div class="success" style="margin-top: 40px; text-align: center;">
+            <h3>✅ Vous êtes maintenant prêt à utiliser Docker avec WSL2 !</h3>
+            <p>Pour toute question ou problème, n'hésitez pas à consulter l'équipe technique.</p>
+        </div>
+
+        <hr style="margin: 40px 0; border: none; border-top: 2px solid #ddd;">
+        
+        <div style="text-align: center; color: #999; font-size: 0.9em;">
+            <p><strong>Documentation Technique</strong> - WSL2 & Docker Engine</p>
+            <p>Dernière mise à jour : Décembre 2025</p>
+        </div>
+    </div>
+</body>
+</html>
